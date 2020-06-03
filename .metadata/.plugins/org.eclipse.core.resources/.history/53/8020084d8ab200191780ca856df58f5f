@@ -1,0 +1,40 @@
+<%@page import="org.student.entity.Student"%>
+<%@page import="java.util.List"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>学生信息列表</title>
+</head>
+<body>
+	<table border="1px">
+		<tr>
+			<th>学号</th>
+			<th>姓名</th>
+			<th>年龄</th>
+			<th>地址</th>
+			<th>操作</th>
+		</tr>
+		<%
+			//获取request域中的数
+			List<Student> students=(List<Student>)request.getAttribute("students");
+			for(Student student:students){
+		%>	
+		<tr>
+			<td><%=student.getSno() %></td>
+			<td><%=student.getSname() %></td>
+			<td><%=student.getSage() %></td>
+			<td><%=student.getSaddress() %></td>
+		
+		</tr>
+		
+		<%
+			}
+		%>
+		
+		
+	</table>
+</body>
+</html>

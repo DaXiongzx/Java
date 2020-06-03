@@ -1,0 +1,302 @@
+package Shuffle;
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.Image;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import javax.swing.*;
+import javax.swing.event.DocumentListener;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+
+class Frame extends JFrame{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	ConnectionManager man=new ConnectionManager();
+	Font font=new Font("宋体",Font.PLAIN,25);//格式
+	String[][] b={{"1","2","3",},{"4","5","6",},{"7","0","8"}};
+	Array a=new Array();
+	ImageIcon imgu=new ImageIcon("C:\\Users\\admin\\Desktop\\up(1).png");
+	ImageIcon imgd=new ImageIcon("C:\\Users\\admin\\Desktop\\down.png");
+	ImageIcon imgl=new ImageIcon("C:\\Users\\admin\\Desktop\\left.png");
+	ImageIcon imgr=new ImageIcon("C:\\Users\\admin\\Desktop\\right.png");
+	public ImageIcon image;
+	public  JButton button1,button2,button3,button4,button5,button6,button7;
+	public JLabel label1,label2,label3,label4,picturelabel,picturelabel1,picturelabel2,background;
+	public JLabel label11,label12,label13,label14,label15,label16,label17,label18,label19;
+	public JTextField namefield,recordfield,press,end;
+	public JPanel panel;
+	public String name1="name";
+	public String name2="name";
+	public String result;
+	public String name;
+	public int num=0;
+	public String num1=Integer.toString(num);
+	int presstime=0;
+	String pressnum;
+	int x;
+	public void changevalue(String [][]b) {
+		label11.setText(b[0][0]);
+		label12.setText(b[0][1]);
+		label13.setText(b[0][2]);
+		label14.setText(b[1][0]);
+		label15.setText(b[1][1]);
+		label16.setText(b[1][2]);
+		label17.setText(b[2][0]);
+		label18.setText(b[2][1]);
+		label19.setText(b[2][2]);	
+	}
+	public  void inttoString(String[][]b,int [][]arr) {
+		for(int i=0;i<3;i++) {
+			for(int j=0;j<3;j++) {
+				String num1=Integer.toString(arr[i][j]);
+				b[i][j]=num1;
+			}
+		}
+	}
+	public  void show(String[][]b) {//将表格插入到界面中
+		label11=new JLabel(b[0][0]);
+		label12=new JLabel(b[0][1]);
+		label13=new JLabel(b[0][2]);
+		label14=new JLabel(b[1][0]);
+		label15=new JLabel(b[1][1]);
+		label16=new JLabel(b[1][2]);
+		label17=new JLabel(b[2][0]);
+		label18=new JLabel(b[2][1]);
+		label19=new JLabel(b[2][2]);
+		label11.setFont(font);
+		label11.setBounds(300,350, 50, 30);
+		label12.setFont(font);
+		label12.setBounds(400, 350, 50, 30);
+		label13.setFont(font);
+		label13.setBounds(500, 350, 50, 30);
+		label14.setFont(font);
+		label14.setBounds(300, 450, 50, 30);
+		label15.setFont(font);
+		label15.setBounds(400, 450, 50, 30);
+		label16.setFont(font);
+		label16.setBounds(500, 450, 50, 30);
+		label17.setFont(font);
+		label17.setBounds(300, 550, 100, 30);
+		label18.setFont(font);
+		label18.setBounds(400, 550, 100, 30);
+		label19.setFont(font);
+		label19.setBounds(500, 550, 100, 30);
+		add(label11);
+		add(label12);
+		add(label13);
+		add(label14);
+		add(label15);
+		add(label16);
+		add(label17);
+		add(label18);
+		add(label19);
+	}
+	class ButtonListener implements ActionListener{
+		public void actionPerformed(ActionEvent e) {
+			String s=e.getActionCommand();
+			if(s.equals("Restart")) {
+				presstime=0;
+				pressnum=Integer.toString(presstime);
+				press.setText(pressnum);
+				end.setText("  ");
+				a=new Array();
+				a.initarray();
+				inttoString(b,a.arr);
+				changevalue(b);
+				namefield.setText(" ");
+				picturelabel1.setVisible(false);
+				picturelabel2.setVisible(false);
+			}
+			if(s.equals("Start")) {
+				name1=namefield.getText();
+				System.out.println(name1);
+				try {
+					recordfield.setText(man.show());
+				} catch (ClassNotFoundException | SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+			if(s.equals("END")) {
+				//name=namefield.getText();
+				if(a.judge()) {
+					result="Success ^_^";
+					picturelabel1.setVisible(true);
+					picturelabel2.setVisible(false);
+					try {
+						man.add(namefield.getText(), presstime);
+					} catch (ClassNotFoundException | SQLException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+				}
+				else {
+					result="Fail >_<";
+					picturelabel1.setVisible(false);
+					picturelabel2.setVisible(true);
+					try {
+						man.add(namefield.getText(), presstime);
+					} catch (ClassNotFoundException | SQLException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+				}
+				end.setText(result);
+		}
+			
+	}
+	}
+	public Frame() {
+		setResizable(false);
+		a.initarray();//初始化
+		inttoString(b,a.arr);
+		show(b);
+		background=new JLabel(new ImageIcon("C:\\Users\\admin\\Desktop\\background(3).png"));
+		background.setFont(font);
+		background.setBounds(-10,-110, 1000,1000);
+		background.setOpaque(false);
+		background.setOpaque(false);
+		picturelabel=new JLabel(new ImageIcon("C:\\Users\\admin\\Desktop\\1(3).png"));
+		picturelabel.setFont(font);
+		picturelabel.setBounds(210, 200, 400, 400);
+		picturelabel1=new JLabel(new ImageIcon("C:\\Users\\admin\\Desktop\\success.png"));
+		picturelabel1.setFont(font);
+		picturelabel1.setBounds(550,80, 280, 300);
+		picturelabel1.setVisible(false);
+		picturelabel2=new JLabel(new ImageIcon("C:\\Users\\admin\\Desktop\\fail.png"));
+		picturelabel2.setFont(font);
+		picturelabel2.setBounds(550, 80, 280, 300);
+		picturelabel2.setVisible(false);
+		namefield=new JTextField(name1);
+		namefield.setBounds(180, 88, 100, 30);
+		namefield.setFont(font);
+		label1=new JLabel("Name:");
+		label1.setFont(font);
+		label1.setBounds(100, 50, 100,100);//label位置
+		label2=new JLabel("Record Holder:");
+		label2.setBounds(100,100,300,100);
+		label2.setFont(font);
+		recordfield=new JTextField(name2);
+		recordfield.setBounds(290, 138, 100, 30);
+		recordfield.setFont(font);
+		label3=new JLabel("Key Press:");
+		label3.setFont(font);
+		label3.setBounds(100, 150, 300, 100);
+		label4=new JLabel("Result:");
+		label4.setFont(font);
+		label4.setBounds(100, 230, 100, 30);
+		end=new JTextField();
+		end.setFont(font);
+		end.setBounds(200, 230, 200, 30);
+		press=new JTextField(num1);
+		press.setFont(font);
+		press.setBounds(240, 190, 100, 30);
+		button1=new JButton(imgu);
+		button2=new JButton(imgd);
+		button3=new JButton(imgl);
+		button4=new JButton(imgr);
+		button6=new JButton("Start");
+		button5=new JButton("Restart");
+		button7=new JButton("END");
+		button1.setFont(font);
+		button1.setBounds(380, 600, 60, 60);
+		button2.setFont(font);
+		button2.setBounds(380, 660, 60, 60);
+		button3.setFont(font);
+		button3.setBounds(320, 660, 60, 60);
+		button4.setFont(font);
+		button4.setBounds(440, 660, 60, 60);
+		button5.setFont(font);
+		button5.setBounds(400, 190, 130, 30);
+		button6.setFont(font);
+		button6.setBounds(300, 90, 100, 30);
+		button7.setFont(font);
+		button7.setBounds(400, 230, 100, 30);
+		button1.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				presstime++;
+				pressnum=Integer.toString(presstime);
+				press.setText(pressnum);
+				a.swap3();
+				inttoString(b,a.arr);
+			    changevalue(b);
+			}
+		});
+		button2.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				presstime++;
+				pressnum=Integer.toString(presstime);
+				press.setText(pressnum);
+				a.swap4();
+				inttoString(b,a.arr);
+				changevalue(b);
+			}
+		});
+		button3.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				presstime++;
+				pressnum=Integer.toString(presstime);
+				press.setText(pressnum);
+				a.swap1();
+				inttoString(b,a.arr);
+				changevalue(b);
+			}
+		});
+		button4.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+			presstime++;
+			pressnum=Integer.toString(presstime);
+			press.setText(pressnum);
+			a.swap2();
+			inttoString(b,a.arr);
+			changevalue(b);
+			}
+		});
+		button5.addActionListener(new ButtonListener());
+		button6.addActionListener(new ButtonListener());
+		button7.addActionListener(new ButtonListener());
+		add(label1);
+		add(namefield);
+		add(label2);
+		add(recordfield);
+		add(label3);
+		add(press);
+		add(label4);
+		add(end);
+		add(button5);
+		add(button6);
+		add(button7);
+		add(button1);
+		add(button2);
+		add(button3);
+		add(button4);
+		add(picturelabel);
+		add(picturelabel1);
+		add(picturelabel2);
+		add(background);
+		setLayout(new BorderLayout());
+		setSize(900, 900);
+		setTitle("Shuffle");
+		setVisible(true);
+		System.out.println(namefield.getText());
+	}
+}
+	
+

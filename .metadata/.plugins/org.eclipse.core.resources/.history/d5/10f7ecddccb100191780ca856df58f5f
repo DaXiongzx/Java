@@ -1,0 +1,31 @@
+package org.student.dao;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+
+import javax.swing.text.html.HTMLDocument.HTMLReader.ParagraphAction;
+
+public class StudentDao {
+	private final String url="jdbc:mysql://localhost:3306/testdb?&useSSL=false&serverTimezone=UTC";\
+	private final String user="root";
+	private final String password="112233";
+	public void queryStudentBySno(int sno) {
+		Connection connection=null;
+		PreparedStatement pstmt=null;
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			connection=DriverManager.getConnection(url, user, password);
+			pstmt = connection.prepareStatement(sql);
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch(SQLException e) {
+			e.printStackTrace();
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+}

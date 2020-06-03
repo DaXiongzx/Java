@@ -1,0 +1,3 @@
+The event that occurred on 新建文件夹 is ENTRY_CREATE
+The event that occurred on 新建文件夹 is ENTRY_DELETE
+The event that occurred on aaa is ENTRY_CREATE

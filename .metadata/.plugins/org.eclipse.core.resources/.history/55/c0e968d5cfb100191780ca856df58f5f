@@ -1,0 +1,5 @@
+package org.student.service;
+//业务逻辑层：逻辑性的增删改查（增：查+增） ，对dao层进行的组装
+public class StudentService {
+
+}

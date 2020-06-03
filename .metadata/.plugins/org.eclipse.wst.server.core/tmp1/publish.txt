@@ -1,0 +1,7 @@
+#Tomcat publish data
+#Sat Aug 03 13:32:34 CST 2019
+org.eclipse.jst.jee.server\:MVCSimple3=F\:\\Server\\apache-tomcat-8.5.43\\wtpwebapps\\MVCSimple3
+org.eclipse.jst.jee.server\:MVCSimple2=F\:\\Server\\apache-tomcat-8.5.43\\wtpwebapps\\MVCSimple2
+org.eclipse.jst.jee.server\:newServletProject=F\:\\Server\\apache-tomcat-8.5.43\\wtpwebapps\\newServletProject
+org.eclipse.jst.jee.server\:MyJspProject1=F\:\\Server\\apache-tomcat-8.5.43\\wtpwebapps\\MyJspProject1
+org.eclipse.jst.jee.server\:ThreeTierSample=F\:\\Server\\apache-tomcat-8.5.43\\wtpwebapps\\ThreeTierSample

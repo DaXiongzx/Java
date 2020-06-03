@@ -1,0 +1,5 @@
+package org.student.service;
+
+public class StudentService {
+
+}

@@ -1,0 +1,14 @@
+The event that occurred on 新建文件夹 is ENTRY_CREATE
+The event that occurred on 新建文件夹 is ENTRY_DELETE
+The event that occurred on Details is ENTRY_CREATE
+The event that occurred on Details is ENTRY_MODIFY
+The event that occurred on Details is ENTRY_MODIFY
+The event that occurred on 新建文件夹 is ENTRY_CREATE
+The event that occurred on 新建文件夹 is ENTRY_DELETE
+The event that occurred on BackUp is ENTRY_CREATE
+The event that occurred on BackUp is ENTRY_MODIFY
+The event that occurred on BackUp is ENTRY_MODIFY
+The event that occurred on BackUp is ENTRY_MODIFY
+The event that occurred on BackUp is ENTRY_MODIFY
+The event that occurred on BackUp is ENTRY_MODIFY
+The event that occurred on BackUp is ENTRY_MODIFY
